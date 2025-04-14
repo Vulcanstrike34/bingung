@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Good Morning</title>
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 1.5em; /* Ukuran teks jadi 1.5em */
+      color: #fff;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px); /* Awalnya agak turun */
+      transition: all 1s ease-in;
+    }
+
+    h1.visible {
+      opacity: 1;
+      transform: translateY(0); /* Naik ke posisi normal */
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+    }
+
+    button.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sun {
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(255, 223, 0, 0.7);
+      opacity: 0;
+      transition: all 3s ease-out;
+      z-index: 1;
+    }
+
+    .sun.rise {
+      bottom: 60%;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="sun" id="sun"></div>
+
+  <div class="container">
+    <h1 id="greeting">Good Morning,dedee I hope today is as beautiful as you are</h1>
+    <button id="btn" onclick="playMusic()">Pencet ya</button>
+  </div>
+
+  <audio src="https://media.vocaroo.com/mp3/15GHRu0cu4DR" id="linkmp3" class="sembunyi"></audio>
+
+  <script>
+    function playMusic() {
+      var audio = document.getElementById('linkmp3');
+      var sun = document.getElementById('sun');
+      var greeting = document.getElementById('greeting');
+      var btn = document.getElementById('btn');
+      
+      audio.play();
+      sun.classList.add('rise');
+      btn.classList.add('hidden');
+
+      setTimeout(function() {
+        greeting.classList.add('visible');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
